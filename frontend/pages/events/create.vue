@@ -8,6 +8,12 @@
           {{ $t("pages._global.information") }}
         </h1>
       </div>
+      <p>
+        {{ $t("pages.events.create.information") }}
+      </p>
+      <CardEventInfoNameTagline></CardEventInfoNameTagline>
+      <CardEventInfoOrganizer></CardEventInfoOrganizer>
+      <CardEventInfoConnect></CardEventInfoConnect>
       <div class="pt-3 pb-6 space-y-6 md:pt-4 w-1/2">
         <CardDatePicker />
       </div>
@@ -16,6 +22,10 @@
 </template>
 
 <script setup lang="ts">
+import CardEventInfo from '~/components/card/card-event-flow/cardEventInfo.vue';
+import CardEventInfoNameTagline from '~/components/card/card-event-flow/cardEventInfoNameTagline.vue';
+import CardEventInfoOrganizer from '~/components/card/card-event-flow/CardEventInfoOrganizer.vue';
+import CardEventInfoConnect from '~/components/card/card-event-flow/CardEventInfoConnect.vue';
 definePageMeta({
   layout: "sidebar",
 });
