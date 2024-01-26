@@ -1,24 +1,28 @@
 <template>
   <div
-    class="flex justify-center card-style md:justify-start flex-col px-3 py-4 md:flex-row md:grow lg:px-5 md:py-3"
+    class="flex flex-col justify-center px-3 py-4 card-style md:justify-start md:flex-row md:grow lg:px-5 md:py-3"
   >
     <CardSearchResultOrganization
       v-if="searchResultType === 'organization'"
       :organization="organization"
+      :reduced="reduced"
     />
     <CardSearchResultEvent
       v-else-if="searchResultType === 'event'"
       :event="event"
+      :reduced="reduced"
     />
     <CardSearchResultResource
       v-else-if="searchResultType === 'resource'"
       :resource="resource"
       :isPrivate="isPrivate"
+      :reduced="reduced"
     />
     <CardSearchResultUser
       v-else-if="searchResultType === 'user'"
       :user="user"
       :isPrivate="isPrivate"
+      :reduced="reduced"
     />
   </div>
 </template>
@@ -31,6 +35,7 @@ import type { User } from "~/types/user";
 
 defineProps<{
   searchResultType: "organization" | "event" | "resource" | "user";
+  reduced?: boolean;
   isPrivate?: boolean;
   organization?: Organization;
   event?: Event;

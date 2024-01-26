@@ -1,22 +1,28 @@
 <template>
   <aside
-    @mouseover="sidebar.collapsed = false"
-    @mouseleave="sidebar.collapsed = true"
-    class="absolute z-10 flex-col hidden h-full border-r transition-all duration-500 bg-light-distinct dark:bg-dark-distinct md:flex border-light-section-div dark:border-dark-section-div elem-shadow-sm"
+    @mouseover="
+      sidebar.collapsed = false;
+      setContentScrollable();
+    "
+    @mouseleave="
+      sidebar.collapsed = true;
+      setContentScrollable();
+    "
+    class="absolute z-10 flex-col hidden h-full transition-all duration-500 border-r bg-light-distinct dark:bg-dark-distinct md:flex border-light-section-div dark:border-dark-section-div elem-shadow-sm"
     :class="{
       'w-56': !sidebar.collapsed || sidebar.collapsedSwitch == false,
       'w-16': sidebar.collapsed && sidebar.collapsedSwitch == true,
     }"
   >
-    <SidebarLeftHeader />
+    <SidebarLeftHeader @toggle-pressed="setContentScrollable()" />
     <div
+      ref="content"
       class="h-full overflow-x-hidden"
       :class="{
-        'overflow-y-auto':
-          !sidebar.collapsed || sidebar.collapsedSwitch == false,
+        '-mr-[0.55rem]': contentScrollable,
       }"
     >
-      <SearchBar class="mt-2" location="sidebar" />
+      <SearchBar class="mt-1" location="sidebar" />
       <SidebarLeftMainSectionSelectors class="mt-2" />
       <SidebarLeftIndex
         v-if="
@@ -284,5 +290,22 @@ const getFiltersByPageType = computed(() => {
   }
 
   return filters;
+});
+
+const content = ref();
+const contentScrollable = ref(false);
+
+function setContentScrollable(): void {
+  contentScrollable.value =
+    content.value.scrollHeight > content.value.clientHeight ? true : false;
+}
+
+onMounted(() => {
+  window.addEventListener("resize", setContentScrollable);
+  setContentScrollable();
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", setContentScrollable);
 });
 </script>

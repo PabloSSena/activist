@@ -28,7 +28,6 @@
 
 <script setup lang="ts">
 import { onClickOutside } from "@vueuse/core";
-import { ref } from "vue";
 
 const target = ref();
 const menuOpen = ref(false);
@@ -39,11 +38,11 @@ const toggleMenuState = () => {
 };
 
 onClickOutside(
-  target,
+  target.value,
   () => {
     if (!menuOpen.value) return;
     toggleMenuState();
   },
-  { ignore: [ignoreElRef] }
+  { ignore: [ignoreElRef.value] }
 );
 </script>

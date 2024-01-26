@@ -3,7 +3,7 @@
     v-if="location == 'sidebar'"
     class="flex justify-between grow items-center pl-[12px] py-1 mx-2 text-left transition duration-200 rounded-md select-none text-light-special-text dark:text-dark-special-text focus-within:border-light-link-text focus-within:border-2 dark:focus-within:border-dark-link-text focus-within:mb-[-3px] bg-light-header dark:bg-dark-header elem-shadow-sm"
   >
-    <div class="flex items-center space-x-2 pl-1">
+    <div class="flex items-center pl-1 space-x-2">
       <Icon class="flex-shrink-0 w-4 h-4 my-1" name="bi:search" size="1em" />
       <Transition name="search">
         <input
@@ -33,7 +33,7 @@
           />
           <p class="-mt-[0.075rem]">/</p>
         </div>
-        <!-- <div
+        <div
           v-if="$device.isMacOS"
           class="flex px-2 py-[0.125rem] text-sm text-center rounded-md has-tooltip bg-light-highlight dark:bg-dark-highlight text-light-special-text dark:text-dark-special-text"
         >
@@ -45,14 +45,14 @@
         </div>
         <div
           v-else
-          class="flex px-2 py-[0.125rem] text-sm text-center border rounded-md has-tooltip border-light-special-text dark:border-dark-special-text text-light-special-text dark:text-dark-special-text"
+          class="flex px-2 py-[0.125rem] text-sm text-center rounded-md has-tooltip bg-light-highlight dark:bg-dark-highlight text-light-special-text dark:text-dark-special-text"
         >
           <TooltipBase
             class="invisible -mt-8"
             :text="$t('components.search-bar.control-tooltip-label')"
           />
           <p>⌃k</p>
-        </div> -->
+        </div>
       </div>
     </Transition>
   </div>
@@ -78,7 +78,6 @@
 
 <script setup lang="ts">
 import { useMagicKeys, whenever } from "@vueuse/core";
-import { ref } from "vue";
 
 const sidebar = useSidebar();
 const input = ref();
