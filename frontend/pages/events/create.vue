@@ -8,6 +8,9 @@
           {{ $t("pages._global.information") }}
         </h1>
       </div>
+      <p>
+        {{ $t("pages.events.team.informationDescription") }}
+      </p>
       <div class="pt-3 pb-6 space-y-6 md:pt-4 w-1/2">
         <CardDatePicker />
       </div>
